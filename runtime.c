@@ -1,5 +1,6 @@
 #include <stdio.h>
-#include "mstr.h"
+#include <stdlib.h>
+#include <dlfcn.h>
 
 #define MAXLEN 512
 
@@ -7,6 +8,38 @@ int main()
 {
     int len;
     char text[MAXLEN];
+    void* handle;
+    char* error;
+    int (*isNumber)(const char*);
+    int (*hasCapital)(const char*);
+    int (*hasLetter)(const char*);
+
+    handle = dlopen("./libmstr.so", RTLD_LAZY);
+    if (!handle)
+    {
+        fprintf(stderr, "%s\n", dlerror());
+        exit(1);
+    }
+    isNumber = dlsym(handle, "isNumber");
+    if ((error = dlerror()) != NULL)
+    {
+        fprintf(stderr, "%s\n", error);
+        exit(1);
+    }
+
+    hasCapital = dlsym(handle, "hasCapital");
+    if ((error = dlerror()) != NULL)
+    {
+        fprintf(stderr, "%s\n", error);
+        exit(1);
+    }
+
+    hasLetter = dlsym(handle, "hasLetter");
+    if ((error = dlerror()) != NULL)
+    {
+        fprintf(stderr, "%s\n", error);
+        exit(1);
+    }
 
     while (1)
     {
@@ -25,6 +58,11 @@ int main()
             switch (len)
             {
                 case 0:
+                    if (dlclose(handle) < 0)
+                    {
+                        fprintf(stderr, "%s\n", dlerror());
+                        exit(1);
+                    }
                     return 0;
                 case 1:
                     if (isNumber(text))
@@ -49,6 +87,11 @@ int main()
             }
         }
 
+        if (dlclose(handle) < 0)
+        {
+            fprintf(stderr, "%s\n", dlerror());
+            exit(1);
+        }
         return 0;
     }
 }

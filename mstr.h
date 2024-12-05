@@ -2,7 +2,7 @@
 #define MSTR_H
 
 int isNumber(const char*);
-int isCapital(const char*);
-int isLetter(const char*);
+int hasCapital(const char*);
+int hasLetter(const char*);
 
 #endif // MSTR_H

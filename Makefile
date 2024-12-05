@@ -1,11 +1,11 @@
 CC = gcc
 AR = ar
 MAINSRC = main.c
-SRC = mstr.c
+RUNSRC = runtime.c
 LIBNAME = mstr
 TARGET = libtest
 
-all : OBJECT STALIB SHALIB $(TARGET)_STALIB $(TARGET)_SHALIB
+all : OBJECT STALIB SHALIB $(TARGET)_STALIB $(TARGET)_SHALIB $(TARGET)_RUNTIME
 
 OBJECT : mstr.c
 	$(CC) -Og -c -fpic mstr.c
@@ -23,5 +23,8 @@ $(TARGET)_STALIB : lib$(LIBNAME).a
 $(TARGET)_SHALIB : lib$(LIBNAME).so
 	$(CC) $(MAINSRC) -L. -l$(LIBNAME) -o $(TARGET)_shared 
 
+$(TARGET)_RUNTIME : lib$(LIBNAME).so
+	$(CC) -rdynamic -o $(TARGET)_runtime $(RUNSRC) -ldl
+
 clean:
-	rm -rf $(TARGET)_static $(TARGET)_shared lib$(LIBNAME)* *.o lib
+	rm -rf $(TARGET)_* lib$(LIBNAME)* *.o

@@ -5,7 +5,7 @@ int isNumber(const char* text)
         return 0;
     while (text[index] != '\0')
     {
-        if (text[index] >= '0' && text[index] <= '9')
+        if (text[index] >= 48 && text[index] <= 57)
             index++;
         else
             return 0;
@@ -13,32 +13,32 @@ int isNumber(const char* text)
     return 1;
 }
 
-int isCapital(const char* text)
+int hasCapital(const char* text)
 {
     int index = 0;
     if (text[index] == '\0')
         return 0;
     while (text[index] != '\0')
     {
-        if (text[index] >= 'A' && text[index] <= 'Z')
-            index++;
+        if (text[index] >= 65 && text[index] <= 90)
+            return 1;
         else
-            return 0;
+            index++;
     }
-    return 1;
+    return 0;
 }
 
-int isLetter(const char* text)
+int hasLetter(const char* text)
 {
     int index = 0;
     if (text[index] == '\0')
         return 0;
     while (text[index] != '\0')
     {
-        if (text[index] >= 'a' && text[index] <= 'z')
-            index++;
+        if (text[index] >= 97 && text[index] <= 122)
+            return 1;
         else
-            return 0;
+            index++;
     }
-    return 1;
+    return 0;
 }
