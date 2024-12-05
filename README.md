@@ -7,7 +7,7 @@ C의 string.h에서 지원하지 않는 기능 일부를 구현한 라이브러�
 ## Description
 ### Library function - mstr.h
 - isNumber(const char*)
-  - 입력된 text가 숫자인지 확인하는 함수
+  - 입력된 text가 숫자인지 확인하는 함수, 문자가 같이 있으면 0을 return
 - hasCapital(const char*)
   - 입력된 text 내에 영어 대문자가 있는지 확인하는 함수
 - hasLetter(const char*)
@@ -28,3 +28,11 @@ C의 string.h에서 지원하지 않는 기능 일부를 구현한 라이브러�
   - shared library
 - Makefile
   - 실행파일 빌드
+
+## Examples
+- static, hasCapital
+![image](https://github.com/user-attachments/assets/18ec0d62-5b7a-4207-9c3c-d275f6566ad9)
+- shared, hasLetter
+![image](https://github.com/user-attachments/assets/b8513b37-6843-4798-ad4b-65b7aac4dcf4)
+- runtime, isNumber
+![image](https://github.com/user-attachments/assets/9059565e-550b-4824-983e-0c8b412cd2e0)
