@@ -31,10 +31,13 @@ C의 string.h에서 지원하지 않는 기능 일부를 구현한 라이브러�
 
 ## Examples
 - static, hasCapital
+
 ![image](https://github.com/user-attachments/assets/18ec0d62-5b7a-4207-9c3c-d275f6566ad9)
 
 - shared, hasLetter
+
 ![image](https://github.com/user-attachments/assets/b8513b37-6843-4798-ad4b-65b7aac4dcf4)
 
 - runtime, isNumber
+
 ![image](https://github.com/user-attachments/assets/9059565e-550b-4824-983e-0c8b412cd2e0)
