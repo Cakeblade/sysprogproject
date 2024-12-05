@@ -28,3 +28,4 @@ C의 string.h에서 지원하지 않는 기능 일부를 구현한 라이브러�
   - shared library
 - Makefile
   - 실행파일 빌드
+
